@@ -20,7 +20,7 @@ public class NotaGenerator {
      */
     public static void main(String[] args) {
         String running = "1";
-        while (running != "0"){
+        while (!running.equals("0")){
             printMenu();
             System.out.print("Pilihan : ");
             running = input.nextLine();
@@ -40,6 +40,10 @@ public class NotaGenerator {
                 }
                 String idLaundry = generateId(nama, nomorHP);
                 System.out.println("ID Anda : " + idLaundry);   
+            }
+            else{
+                System.out.println("================================");
+                System.out.println("Terima kasih telah menggunakan Nota Generator!");
             }
         }
     }
