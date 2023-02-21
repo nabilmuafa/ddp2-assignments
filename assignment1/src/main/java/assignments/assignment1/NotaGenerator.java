@@ -41,6 +41,40 @@ public class NotaGenerator {
                 String idLaundry = generateId(nama, nomorHP);
                 System.out.println("ID Anda : " + idLaundry);   
             }
+            else if (running.equals("2")){
+                System.out.println("================================");
+                System.out.println("Masukkan nama anda:");
+                String nama = input.nextLine();
+                System.out.println("Masukkan nomor handphone anda:");
+                String nomorHP = input.nextLine();
+                while (!isNumeric(nomorHP)){
+                    System.out.println("Nomor HP hanya menerima digit");
+                    nomorHP = input.nextLine();
+                }
+                System.out.println("Masukkan tanggal terima:");
+                String tanggalTerima = input.nextLine();
+                System.out.println("Masukkan paket laundry:");
+                String paket = input.nextLine().toLowerCase();
+                while (!paket.equals("express") && !paket.equals("fast") && !paket.equals("reguler")){
+                        if (paket.equals("?")){
+                            showPaket();
+                        }
+                        else{
+                            System.out.println("Paket " + paket + " tidak diketahui.");
+                            System.out.println("[ketik ? untuk mencari tahu jenis paket]");
+                        }
+                        System.out.println("Masukkan paket laundry:");
+                        paket = input.nextLine();
+                }
+                System.out.println("Masukkan berat cucian anda [Kg]:");
+                String beratCucian = input.nextLine();
+                while (!isNumeric(beratCucian)){
+                    System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
+                    beratCucian = input.nextLine();
+                }
+                int berat = Integer.parseInt(beratCucian);
+                generateNota(generateId(nama, nomorHP), paket, berat, tanggalTerima);
+            }
             else{
                 System.out.println("================================");
                 System.out.println("Terima kasih telah menggunakan Nota Generator!");
