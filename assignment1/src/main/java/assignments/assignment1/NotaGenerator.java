@@ -2,6 +2,8 @@ package assignments.assignment1;
 
 import java.util.Scanner;
 import java.lang.Character;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class NotaGenerator {
     private static final Scanner input = new Scanner(System.in);
@@ -73,7 +75,12 @@ public class NotaGenerator {
                     beratCucian = input.nextLine();
                 }
                 int berat = Integer.parseInt(beratCucian);
-                generateNota(generateId(nama, nomorHP), paket, berat, tanggalTerima);
+                if (berat < 2){
+                    System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
+                    berat = 2;
+                }
+                String nota = generateNota(generateId(nama, nomorHP), paket, berat, tanggalTerima);
+                System.out.println(nota);
             }
             else{
                 System.out.println("================================");
@@ -148,7 +155,33 @@ public class NotaGenerator {
      */
 
     public static String generateNota(String id, String paket, int berat, String tanggalTerima){
-        // TODO: Implement generate nota sesuai soal.
-        return null;
+        String nota = "Nota Laundry\n";
+        nota += "ID\t: " + id + "\n";
+        nota += "Paket\t: " + paket + "\n";
+        nota += "Harga\t: \n";
+        int hargaPerPaket = 0;
+        int hari = 0;
+        switch (paket){
+            case "reguler":
+                hargaPerPaket = 7000;
+                hari = 3;
+                break;
+            case "fast":
+                hargaPerPaket = 10000;
+                hari = 2;
+                break;
+            case "express":
+                hargaPerPaket = 12000;
+                hari = 1;
+                break;
+        }
+        int hargaTotal = berat * hargaPerPaket;
+        nota += Integer.toString(berat) + " kg x " + Integer.toString(hargaPerPaket) + " = " + Integer.toString(hargaTotal) + "\n";
+        nota += "Tanggal Terima\t: " + tanggalTerima + "\n";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+        LocalDate tanggalTerimaDate = LocalDate.parse(tanggalTerima, formatter);
+        String tanggalSelesai = formatter.format(tanggalTerimaDate.plusDays(hari));
+        nota += "Tanggal Selesai\t: " + tanggalSelesai;
+        return nota;
     }
 }
