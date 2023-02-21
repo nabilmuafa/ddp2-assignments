@@ -79,6 +79,7 @@ public class NotaGenerator {
                     System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
                     berat = 2;
                 }
+                System.out.println("Nota Laundry");
                 String nota = generateNota(generateId(nama, nomorHP), paket, berat, tanggalTerima);
                 System.out.println(nota);
             }
@@ -155,10 +156,10 @@ public class NotaGenerator {
      */
 
     public static String generateNota(String id, String paket, int berat, String tanggalTerima){
-        String nota = "Nota Laundry\n";
-        nota += "ID\t: " + id + "\n";
-        nota += "Paket\t: " + paket + "\n";
-        nota += "Harga\t: \n";
+        String nota = "";
+        nota += "ID    : " + id + "\n";
+        nota += "Paket : " + paket + "\n";
+        nota += "Harga :\n";
         int hargaPerPaket = 0;
         int hari = 0;
         switch (paket){
@@ -177,11 +178,11 @@ public class NotaGenerator {
         }
         int hargaTotal = berat * hargaPerPaket;
         nota += Integer.toString(berat) + " kg x " + Integer.toString(hargaPerPaket) + " = " + Integer.toString(hargaTotal) + "\n";
-        nota += "Tanggal Terima\t: " + tanggalTerima + "\n";
+        nota += "Tanggal Terima  : " + tanggalTerima + "\n";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         LocalDate tanggalTerimaDate = LocalDate.parse(tanggalTerima, formatter);
         String tanggalSelesai = formatter.format(tanggalTerimaDate.plusDays(hari));
-        nota += "Tanggal Selesai\t: " + tanggalSelesai;
+        nota += "Tanggal Selesai : " + tanggalSelesai;
         return nota;
     }
 }
