@@ -64,7 +64,7 @@ public class NotaGenerator {
                             System.out.println("[ketik ? untuk mencari tahu jenis paket]");
                         }
                         System.out.println("Masukkan paket laundry:");
-                        paket = input.nextLine();
+                        paket = input.nextLine().toLowerCase();
                 }
                 System.out.println("Masukkan berat cucian anda [Kg]:");
                 String beratCucian = input.nextLine();
