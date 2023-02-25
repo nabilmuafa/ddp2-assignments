@@ -135,6 +135,7 @@ public class NotaGenerator {
                 checkSum += 7;
             }
         }
+        checkSum %= 100;
         String checkSumString = String.format("%02d", checkSum);
         idLaundry += ("-" + checkSumString);
         
