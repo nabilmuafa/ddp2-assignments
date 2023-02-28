@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter;
 public class NotaGenerator {
     private static final Scanner input = new Scanner(System.in);
 
+    /**
+     * Helper method untuk menentukan apakah sebuah string
+     * numerik (bisa diubah ke int) 
+     */
     public static boolean isNumeric(String str){
         char[] chars = str.toCharArray();
         for (int i=0; i<chars.length; i++){
@@ -22,24 +26,29 @@ public class NotaGenerator {
      */
     public static void main(String[] args) {
         String running = "1";
+        // While loop dengan sentinel value 0
         while (!running.equals("0")){
             printMenu();
             System.out.print("Pilihan : ");
             running = input.nextLine();
+            // Validasi input pilihan opsi
             if (!running.equals("1") && !running.equals("2") && !running.equals("0")){
                 System.out.println("================================");
                 System.out.println("Pilihan tidak dikenali. Silahkan coba kembali.");
             }
+            // Jika user memilih pilihan 1
             else if (running.equals("1")){
                 System.out.println("================================");
                 System.out.println("Masukkan nama anda:");
                 String nama = input.nextLine();
                 System.out.println("Masukkan nomor handphone anda:");
                 String nomorHP = input.nextLine();
+                // Validasi input nomor HP agar hanya digit yang dimasukkan
                 while (!isNumeric(nomorHP)){
                     System.out.println("Nomor HP hanya menerima digit");
                     nomorHP = input.nextLine();
                 }
+                // Memanggil generateID, disimpan ke string idLaundry
                 String idLaundry = generateId(nama, nomorHP);
                 System.out.println("ID Anda : " + idLaundry);   
             }
