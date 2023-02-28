@@ -36,6 +36,7 @@ public class NotaGenerator {
                 System.out.println("================================");
                 System.out.println("Pilihan tidak dikenali. Silahkan coba kembali.");
             }
+            // Jika user exit
             else if (running.equals("0")){
                 System.out.println("================================");
                 System.out.println("Terima kasih telah menggunakan Nota Generator!");
@@ -147,13 +148,13 @@ public class NotaGenerator {
             char karakterId = idLaundry.charAt(i);
             // Jika ASCII value karakter tsb ada di rentang 48 hingga 57,
             // artinya adalah angka sehingga cukup ambil numeric valuenya
-            if ((int)karakterId >= 48 && (int)karakterId < 58){
+            if (karakterId >= '0' && (int)karakterId <= '9'){
                 checkSum += Character.getNumericValue(karakterId);
             }
             // Jika ASCII value karakter tsb ada di rentang 65 hingga 90,
             // artinya adalah huruf kapital, ambil
-            else if ((int)karakterId >= 65 && (int)karakterId < 91){
-                checkSum += ((int)karakterId - 64);
+            else if (karakterId >= 'A' && karakterId <= 'Z'){
+                checkSum += (int)(karakterId - 'A') + 1;
             }
             // Selain itu, tambahkan 7
             else{
