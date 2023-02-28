@@ -81,7 +81,7 @@ public class NotaGenerator {
                                 System.out.println("[ketik ? untuk mencari tahu jenis paket]");
                             }
                             System.out.println("Masukkan paket laundry:");
-                            paket = input.nextLine().toLowerCase();
+                            paket = input.nextLine();
                             paketIgnoreCase = paket.toLowerCase();
                     }
                     // Input sekaligus validasi berat cucian agar yang dimasukkan hanya digit
