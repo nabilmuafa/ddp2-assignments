@@ -190,7 +190,7 @@ public class NotaGenerator {
         int hargaPerPaket = 0;
         int hari = 0;
         // Switch case untuk harga dan durasi paket
-        switch (paket){
+        switch (paket.toLowerCase()){
             case "reguler":
                 hargaPerPaket = 7000;
                 hari = 3;
