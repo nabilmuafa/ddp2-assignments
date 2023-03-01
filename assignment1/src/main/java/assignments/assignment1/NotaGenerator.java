@@ -148,7 +148,7 @@ public class NotaGenerator {
             char karakterId = idLaundry.charAt(i);
             // Jika ASCII value karakter tsb ada di rentang 48 hingga 57,
             // artinya adalah angka sehingga cukup ambil numeric valuenya
-            if (karakterId >= '0' && (int)karakterId <= '9'){
+            if (karakterId >= '0' && karakterId <= '9'){
                 checkSum += Character.getNumericValue(karakterId);
             }
             // Jika ASCII value karakter tsb ada di rentang 65 hingga 90,
