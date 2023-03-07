@@ -40,4 +40,12 @@ public class Nota {
             }
         }
     }
+    public String getStatusMsg(){
+        if (!this.isReady){
+            return "Status:      \t: Belum bisa diambil :(";
+        }
+        else{
+            return "Status:      \t: Sudah dapat diambil!";
+        }
+    }
 }
