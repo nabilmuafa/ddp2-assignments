@@ -111,11 +111,41 @@ public class MainMenu {
     }
 
     private static void handleAmbilCucian() {
-        // TODO: handle ambil cucian
+        System.out.println("Masukan ID nota yang akan diambil: ");
+        String id = input.nextLine();
+        while(!isNumeric(id)){
+            System.out.println("ID Nota berbentuk angka!");
+            id = input.nextLine();
+        }
+        int idNota = Integer.parseInt(id);
+        for (int i=0; i<notaList.size(); i++){
+            Nota currentNota = notaList.get(i);
+            if (currentNota.getIdNota()==idNota){
+                if (!currentNota.getStatus()){
+                    System.out.println("Nota dengan ID " + idNota + " gagal diambil!");
+                    return;
+                }
+                else{
+                    System.out.println("Nota dengan ID " + idNota + " berhasil diambil!");
+                    notaList.remove(i);
+                    return;
+                }
+            }
+        }
+        System.out.println("Nota dengan ID " + idNota + " tidak ditemukan!");
     }
 
     private static void handleNextDay() {
-        // TODO: handle ganti hari
+        System.out.println("Dek Depe tidur hari ini... zzz...");
+        cal.add(Calendar.DATE, 1);
+        for (Nota nota: notaList){
+            nota.updateSisaHariPengerjaan();
+            if (nota.getStatus()){
+                System.out.println("Laundry dengan nota ID " + nota.getIdNota() + " sudah dapat diambil!");
+            }
+        }
+        System.out.println("Selamat pagi dunia!");
+        System.out.println("Dek Depe: It's CuciCuci time.");
     }
 
     private static void printMenu() {
