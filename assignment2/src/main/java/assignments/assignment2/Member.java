@@ -26,7 +26,7 @@ public class Member {
         return this.bonusCounter;
     }
     public void addBonusCounter(){
-        this.bonusCounter++;
+        this.bonusCounter += 1;
     }
     public void resetBonusCounter(){
         this.bonusCounter = 0;
