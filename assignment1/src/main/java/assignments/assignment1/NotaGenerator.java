@@ -21,6 +21,18 @@ public class NotaGenerator {
         }
         return true;
     }
+    public static boolean isPosNumeric(String str){
+        if (isNumeric(str)){
+            long berat = Long.parseLong(str);
+            if (berat <= 0){
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+        return true;
+    }
     public static String inputPaket(String paket){
         String paketIgnoreCase = paket.toLowerCase();
         while (!paketIgnoreCase.equals("reguler") &&
@@ -87,7 +99,7 @@ public class NotaGenerator {
                     // Input sekaligus validasi berat cucian agar yang dimasukkan hanya digit
                     System.out.println("Masukkan berat cucian anda [Kg]:");
                     String beratCucian = input.nextLine();
-                    while (!isNumeric(beratCucian)){
+                    while (!isPosNumeric(beratCucian)){
                         System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
                         beratCucian = input.nextLine();
                     }
