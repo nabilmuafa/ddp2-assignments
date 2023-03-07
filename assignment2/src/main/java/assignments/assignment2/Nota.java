@@ -23,6 +23,9 @@ public class Nota {
         }
         this.isReady = false;
     }
+    public int getIdNota(){
+        return this.idNota;
+    }
     public boolean getStatus(){
         return this.isReady;
     }
