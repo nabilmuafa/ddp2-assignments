@@ -3,7 +3,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 
-import assignments.assignment1.NotaGenerator;
 import java.util.ArrayList;
 import static assignments.assignment1.NotaGenerator.*;
 
@@ -40,7 +39,7 @@ public class MainMenu {
         String nama = input.nextLine();
         System.out.println("Masukkan nomor handphone Anda: ");
         String noHp = input.nextLine();
-        while(!NotaGenerator.isNumeric(noHp)){
+        while(!isNumeric(noHp)){
             System.out.println("Field nomor hp hanya menerima digit.");
             noHp = input.nextLine();
         }
@@ -52,15 +51,56 @@ public class MainMenu {
             }
         }
         memberList.add(member);
-        System.out.println("Berhasil membuat member dengan ID " + member.getId());
+        System.out.println("Berhasil membuat member dengan ID " + member.getId() + "!");
     }
 
     private static void handleGenerateNota() {
-        // TODO: handle ambil cucian
+        System.out.println("Masukkan ID member: ");
+        String idMember = input.nextLine();
+        boolean isAMember = false;
+        Member currentMember = null;
+        for (Member member: memberList){
+            if (member.getId().equals(idMember)){
+                currentMember = member;
+                member.addBonusCounter();
+                isAMember = true;
+                break;
+            }
+        }
+        if (isAMember){
+            System.out.println("Masukkan paket laundry:");
+            String paket = input.nextLine();
+            paket = inputPaket(paket);
+            System.out.println("Masukkan berat cucian anda: ");
+            String berat = input.nextLine();
+            while (!isPosNumeric(berat)){
+                System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
+                berat = input.nextLine();
+            }
+            int beratInt = Integer.parseInt(berat);
+            if (beratInt < 2){
+                System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
+                beratInt = 2;
+            }
+            Nota nota = new Nota(currentMember, paket, beratInt, fmt.format(cal.getTime()));
+            notaList.add(nota);
+            System.out.println("Berhasil menambahkan nota!");
+            System.out.println("[ID Nota = " + nota.getIdNota() + "]");
+            System.out.println(nota.getNota());
+            System.out.println(nota.getStatusMsg());
+        }
+        else {
+            System.out.println("Member dengan ID " + idMember + " tidak ditemukan!");
+        }
+
     }
 
     private static void handleListNota() {
-        // TODO: handle list semua nota pada sistem
+        System.out.println("Terdaftar " + notaList.size() + " nota dalam sistem.");
+        for (Nota nota: notaList){
+            System.out.print("- [" + nota.getIdNota() + "] ");
+            System.out.println(nota.getStatusMsg());
+        }
     }
 
     private static void handleListUser() {
