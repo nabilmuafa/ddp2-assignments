@@ -48,4 +48,7 @@ public class Nota {
             return "Status:      \t: Sudah dapat diambil!";
         }
     }
+    public String getNota(){
+        return NotaGenerator.generateNota(this.member.getId(), paket, berat, tanggalMasuk);
+    }
 }
