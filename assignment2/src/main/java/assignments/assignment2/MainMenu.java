@@ -3,14 +3,16 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import assignments.assignment1.NotaGenerator;
+import java.util.ArrayList;
 import static assignments.assignment1.NotaGenerator.*;
 
 public class MainMenu {
     private static final Scanner input = new Scanner(System.in);
     private static SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
     private static Calendar cal = Calendar.getInstance();
-    private static Nota[] notaList;
-    private static Member[] memberList;
+    private static ArrayList<Nota> notaList = new ArrayList<Nota>();
+    private static ArrayList<Member> memberList = new ArrayList<Member>();
 
     public static void main(String[] args) {
         boolean isRunning = true;
@@ -34,7 +36,23 @@ public class MainMenu {
     }
 
     private static void handleGenerateUser() {
-        // TODO: handle generate user
+        System.out.println("Masukan nama Anda: ");
+        String nama = input.nextLine();
+        System.out.println("Masukkan nomor handphone Anda: ");
+        String noHp = input.nextLine();
+        while(!NotaGenerator.isNumeric(noHp)){
+            System.out.println("Field nomor hp hanya menerima digit.");
+            noHp = input.nextLine();
+        }
+        Member member = new Member(nama, noHp);
+        for (Member i: memberList){
+            if (i.getId().equals(member.getId())){
+                System.out.println("Member dengan nama " + nama + " dan nomor hp " + noHp + " sudah ada!");
+                return;
+            }
+        }
+        memberList.add(member);
+        System.out.println("Berhasil membuat member dengan ID " + member.getId());
     }
 
     private static void handleGenerateNota() {
@@ -46,7 +64,10 @@ public class MainMenu {
     }
 
     private static void handleListUser() {
-        // TODO: handle list semua user pada sistem
+        System.out.println("Terdaftar " + memberList.size() + " member dalam sistem.");
+        for (Member member: memberList){
+            System.out.println("- " + member.getId() + " : " + member.getNama());
+        }
     }
 
     private static void handleAmbilCucian() {
