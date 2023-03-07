@@ -21,6 +21,24 @@ public class NotaGenerator {
         }
         return true;
     }
+    public static String inputPaket(String paket){
+        String paketIgnoreCase = paket.toLowerCase();
+        while (!paketIgnoreCase.equals("reguler") &&
+            !paketIgnoreCase.equals("fast") &&
+            !paketIgnoreCase.equals("express")){
+                if (paket.equals("?")){
+                    showPaket();
+                }
+                else{
+                    System.out.println("Paket " + paket + " tidak diketahui.");
+                    System.out.println("[ketik ? untuk mencari tahu jenis paket]");
+                }
+                System.out.println("Masukkan paket laundry:");
+                paket = input.nextLine();
+                paketIgnoreCase = paket.toLowerCase();
+        }
+        return paket;
+    }
     /**
      * Method main, program utama kalian berjalan disini.
      */
@@ -65,25 +83,7 @@ public class NotaGenerator {
                     System.out.println("Masukkan paket laundry:");
                     String paket = input.nextLine();
                     // Validasi input paket
-                    String paketIgnoreCase = paket.toLowerCase();
-                    // Loop berjalan jika input bukan salah satu dari paket yang tertera
-                    while (
-                        !paketIgnoreCase.equals("express") &&
-                        !paketIgnoreCase.equals("fast") &&
-                        !paketIgnoreCase.equals("reguler")
-                        ){
-                            // Mencetak paket jika input "?"
-                            if (paket.equals("?")){
-                                showPaket();
-                            }
-                            else{
-                                System.out.println("Paket " + paket + " tidak diketahui.");
-                                System.out.println("[ketik ? untuk mencari tahu jenis paket]");
-                            }
-                            System.out.println("Masukkan paket laundry:");
-                            paket = input.nextLine();
-                            paketIgnoreCase = paket.toLowerCase();
-                    }
+                    paket = inputPaket(paket);
                     // Input sekaligus validasi berat cucian agar yang dimasukkan hanya digit
                     System.out.println("Masukkan berat cucian anda [Kg]:");
                     String beratCucian = input.nextLine();
