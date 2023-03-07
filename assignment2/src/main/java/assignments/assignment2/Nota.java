@@ -3,6 +3,7 @@ package assignments.assignment2;
 import assignments.assignment1.NotaGenerator;
 
 public class Nota {
+    private static int idCounter = 0;
     private int idNota;
     private String paket;
     private Member member;
@@ -11,7 +12,7 @@ public class Nota {
     private int sisaHariPengerjaan;
     private boolean isReady;
     public Nota(Member member, String paket, int berat, String tanggalMasuk) {
-        this.idNota = idNota++;
+        this.idNota = idCounter++;
         this.member = member;
         this.paket = paket;
         this.berat = berat;
