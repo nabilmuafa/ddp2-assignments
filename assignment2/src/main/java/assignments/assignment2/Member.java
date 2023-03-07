@@ -20,7 +20,7 @@ public class Member {
         return this.noHp;
     }
     public String getId(){
-        return this.noHp;
+        return this.id;
     }
     public int getBonusCounter(){
         return this.bonusCounter;
