@@ -19,10 +19,7 @@ public class NotaGenerator {
                 return false;
             }
         }
-        if (Long.parseLong(str) > 0){
-            return true;
-        }
-        return false;
+        return true;
     }
     public static String inputPaket(String paket){
         String paketIgnoreCase = paket.toLowerCase();
