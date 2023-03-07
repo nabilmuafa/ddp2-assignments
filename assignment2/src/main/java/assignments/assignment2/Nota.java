@@ -3,10 +3,41 @@ package assignments.assignment2;
 import assignments.assignment1.NotaGenerator;
 
 public class Nota {
-    // TODO: tambahkan attributes yang diperlukan untuk class ini
+    private int idNota;
+    private String paket;
+    private Member member;
+    private int berat;
+    private String tanggalMasuk;
+    private int sisaHariPengerjaan;
+    private boolean isReady;
     public Nota(Member member, String paket, int berat, String tanggalMasuk) {
-        // TODO: buat constructor untuk class ini
+        this.idNota = idNota++;
+        this.member = member;
+        this.paket = paket;
+        this.berat = berat;
+        this.tanggalMasuk = tanggalMasuk;
+        switch (paket.toLowerCase()){
+            case "reguler"  -> this.sisaHariPengerjaan = 3;
+            case "fast"     -> this.sisaHariPengerjaan = 2;
+            case "express"  -> this.sisaHariPengerjaan = 1;
+        }
+        this.isReady = false;
     }
-
-    // TODO: tambahkan methods yang diperlukan untuk class ini
+    public boolean getStatus(){
+        return this.isReady;
+    }
+    public int getSisaHariPengerjaan(){
+        return this.sisaHariPengerjaan;
+    }
+    public void updateIsReady(){
+        this.isReady = !this.isReady;
+    }
+    public void updateSisaHariPengerjaan(){
+        if (this.sisaHariPengerjaan > 0){
+            this.sisaHariPengerjaan--;
+            if (this.sisaHariPengerjaan == 0){
+                this.updateIsReady();
+            }
+        }
+    }
 }
