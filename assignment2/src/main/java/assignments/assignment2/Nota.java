@@ -53,6 +53,8 @@ public class Nota {
         }
     }
     public String getNota(){
-        return NotaGenerator.generateNota(this.member.getId(), paket, berat, tanggalMasuk);
+        return NotaGenerator.generateNotaDisc(
+            this.member.getId(), paket, berat, tanggalMasuk, this.member.getDiscount()
+            );
     }
 }
