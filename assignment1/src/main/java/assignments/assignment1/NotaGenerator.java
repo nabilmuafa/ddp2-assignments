@@ -196,6 +196,10 @@ public class NotaGenerator {
      */
 
     public static String generateNota(String id, String paket, int berat, String tanggalTerima){
+        return generateNotaDisc(id, paket, berat, tanggalTerima, false);
+    }
+
+    public static String generateNotaDisc(String id, String paket, int berat, String tanggalTerima, boolean disc){
         String nota = "";
         // Mencetak ID, paket, harga
         nota += "ID    : " + id + "\nPaket : " + paket + "\nHarga :\n";
@@ -218,8 +222,11 @@ public class NotaGenerator {
         }
         // Mengoutput harga total
         int hargaTotal = berat * hargaPerPaket;
-        nota += Integer.toString(berat) + " kg x " + Integer.toString(hargaPerPaket) + " = " + Integer.toString(hargaTotal) + "\n";
-        nota += "Tanggal Terima  : " + tanggalTerima + "\n";
+        nota += Integer.toString(berat) + " kg x " + Integer.toString(hargaPerPaket) + " = " + Integer.toString(hargaTotal);
+        if (disc) {
+            nota += " = " + hargaTotal/2 + " (Discount member 50%!!!)";
+        }
+        nota += "\nTanggal Terima  : " + tanggalTerima + "\n";
         // Formatting tanggal selesai dan menambahkan ke nota
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         LocalDate tanggalTerimaDate = LocalDate.parse(tanggalTerima, formatter);
