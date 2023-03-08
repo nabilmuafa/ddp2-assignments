@@ -32,7 +32,7 @@ public class Member {
         this.bonusCounter = 0;
     }
     public boolean getDiscount(){
-        if (this.bonusCounter == 3){
+        if (this.getBonusCounter() == 3){
             this.resetBonusCounter();
             return true;
         }
