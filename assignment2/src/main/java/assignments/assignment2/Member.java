@@ -31,4 +31,11 @@ public class Member {
     public void resetBonusCounter(){
         this.bonusCounter = 0;
     }
+    public boolean getDiscount(){
+        if (this.bonusCounter == 3){
+            this.resetBonusCounter();
+            return true;
+        }
+        else return false;
+    }
 }
