@@ -21,9 +21,14 @@ public class NotaGenerator {
         }
         return true;
     }
+    /**
+     * Method untuk memeriksa apakah sebuah string numerik dan positif
+     */
     public static boolean isPosNumeric(String str){
+        // Memeriksa apakah numerik dengan isNumeric
         if (isNumeric(str)){
             long berat = Long.parseLong(str);
+            // Jika berat <= 0, maka tidak positif
             if (berat <= 0){
                 return false;
             }
@@ -33,11 +38,20 @@ public class NotaGenerator {
         }
         return true;
     }
+    /**
+     * Method untuk validasi input paket
+     * 
+     * @param paket : paket yang dimasukkan
+     * @return String berupa paket setelah validasi
+     */
     public static String inputPaket(String paket){
+        // Ignore case untuk memeriksa
         String paketIgnoreCase = paket.toLowerCase();
+        // Jika paket yang diinput selain reguler, fast, atau express
         while (!paketIgnoreCase.equals("reguler") &&
             !paketIgnoreCase.equals("fast") &&
             !paketIgnoreCase.equals("express")){
+                // cetak paket yang ada jika input "?"
                 if (paket.equals("?")){
                     showPaket();
                 }
@@ -194,11 +208,14 @@ public class NotaGenerator {
      *         <p>Tanggal Terima  : [tanggalTerima]
      *         <p>Tanggal Selesai : [tanggalTerima + LamaHariPaket]
      */
-
     public static String generateNota(String id, String paket, int berat, String tanggalTerima){
+        // Memanggil generateNotaDisc dengan nilai diskon false
         return generateNotaDisc(id, paket, berat, tanggalTerima, false);
     }
 
+    /**
+     * Method untuk generateNota dengan mengconsider diskon (untuk TP2)
+     */
     public static String generateNotaDisc(String id, String paket, int berat, String tanggalTerima, boolean disc){
         String nota = "";
         // Mencetak ID, paket, harga
