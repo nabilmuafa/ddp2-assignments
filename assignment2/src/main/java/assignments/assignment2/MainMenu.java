@@ -168,11 +168,11 @@ public class MainMenu {
             if (currentNota.getIdNota()==idNota){
                 // Check the current nota's status before taking
                 if (!currentNota.getStatus()){
-                    System.out.println("Nota dengan ID " + idNota + " gagal diambil!");
+                    System.out.println("Nota dengan ID " + id + " gagal diambil!");
                     return;
                 }
                 else{
-                    System.out.println("Nota dengan ID " + idNota + " berhasil diambil!");
+                    System.out.println("Nota dengan ID " + id + " berhasil diambil!");
                     // Remove current nota object from the list after successfully taking
                     notaList.remove(i);
                     return;
