@@ -180,7 +180,7 @@ public class MainMenu {
             }
         }
         // Output if nota with the inputted ID wasn't found
-        System.out.println("Nota dengan ID " + idNota + " tidak ditemukan!");
+        System.out.println("Nota dengan ID " + id + " tidak ditemukan!");
     }
 
     private static void handleNextDay() {
