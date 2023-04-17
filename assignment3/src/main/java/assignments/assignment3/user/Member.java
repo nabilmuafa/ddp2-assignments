@@ -30,7 +30,12 @@ public class Member {
      * @param nota Nota object untuk ditambahkan.
      */
     public void addNota(Nota nota) {
-        // TODO
+        Nota[] newNotaList = new Nota[notaList.length+1];
+        for (int i=0; i<notaList.length; i++){
+            newNotaList[i] = notaList[i];
+        }
+        notaList = newNotaList;
+        notaList[notaList.length-1] = nota;
     }
 
     /**
