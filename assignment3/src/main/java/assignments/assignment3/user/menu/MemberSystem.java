@@ -31,6 +31,11 @@ public class MemberSystem extends SystemCLI {
      * @param member -> Member baru yang akan ditambahkan.
      */
     public void addMember(Member member) {
-        // TODO
+        Member[] memberListNew = new Member[memberList.length+1];
+        for (int i=0; i<memberList.length; i++){
+            memberListNew[i] = memberList[i];
+        }
+        memberList = memberListNew;
+        memberList[memberList.length-1] = member;
     }
 }
