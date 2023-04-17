@@ -40,8 +40,7 @@ public class Member {
      * @return true jika ID dan password sesuai dengan instance member, false jika tidak.
      */
     protected boolean authenticate(String password) {
-        // TODO
-        return false;
+        return password.equals(this.password);
     }
 
     // Dibawah ini adalah getter
