@@ -6,7 +6,7 @@ import java.util.Calendar;
 public class NotaManager {
     public static SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
     public static Calendar cal = Calendar.getInstance();
-    static public Nota[] notaList = new Nota[0];
+    public static Nota[] notaList = new Nota[0];
 
     /**
      * Skips ke hari berikutnya dan update semua entri nota yang sesuai.
