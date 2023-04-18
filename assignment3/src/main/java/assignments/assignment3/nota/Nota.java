@@ -40,13 +40,14 @@ public class Nota {
                 this.sisaHariPengerjaan = 1;
                 this.baseHarga = 12000*berat;
         }
+        this.services = new LaundryService[1];
+        this.services[0] = new CuciService();
+
         // Inital value of isDone is always false
         this.isDone = false;
     }
 
     public void createService(boolean wantSetrika, boolean wantAntar){
-        CuciService cuci = new CuciService();
-        this.addService(cuci);
         if (wantSetrika) {
             SetrikaService setrika = new SetrikaService();
             this.addService(setrika);
@@ -59,9 +60,6 @@ public class Nota {
     }
 
     public void addService(LaundryService service){
-        if (services == null){
-            services = new LaundryService[0];
-        }
         LaundryService[] newServices = new LaundryService[services.length+1];
         for (int i=0; i<services.length; i++){
             newServices[i] = services[i];
