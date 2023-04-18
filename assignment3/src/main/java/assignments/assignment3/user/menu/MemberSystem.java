@@ -18,6 +18,7 @@ public class MemberSystem extends SystemCLI {
         boolean logout = false;
         switch (choice){
             case 1 -> this.handleGenerateNota();
+            case 2 -> this.printNota();
             case 3 -> logout = true;
         }
         return logout;
@@ -69,5 +70,11 @@ public class MemberSystem extends SystemCLI {
         nota.createService(!setrika.equals("x"), !antar.equals("x"));
         loginMember.addNota(nota);
         System.out.println("Nota berhasil dibuat!");
+    }
+
+    protected void printNota(){
+        for (Nota nota : loginMember.getNotaList()){
+            System.out.println(nota);
+        }
     }
 }
