@@ -54,7 +54,7 @@ public class MemberSystem extends SystemCLI {
         // Dikatakan "input dijamin valid"
         // asumsi paket & berat pasti benar jadi tidak perlu validasi
         String paket = in.nextLine();
-        System.out.println("Masukkan berat cucian anda:");
+        System.out.println("Masukkan berat cucian anda [Kg]:");
         int berat = in.nextInt();
         in.nextLine();
         if (berat < 2){
