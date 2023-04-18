@@ -56,7 +56,8 @@ public class MemberSystem extends SystemCLI {
         // asumsi paket & berat pasti benar jadi tidak perlu validasi
         String paket = in.nextLine();
         System.out.println("Masukkan berat cucian anda [Kg]:");
-        int berat = in.nextInt();
+        String beratString = in.nextLine();
+        int berat = Integer.parseInt(beratString);
         in.nextLine();
         if (berat < 2){
             System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
