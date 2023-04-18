@@ -79,10 +79,8 @@ public class Nota {
                     break;
                 }
             }
-            if (!this.getServiceStatus()){
-                return String.format("Nota %d : %s", this.id, message);
-            }
-            this.isDone = true;
+            this.isDone = this.updateStatus();
+            return String.format("Nota %d : %s", this.id, message);
         }
         return this.getNotaStatus();
     }
@@ -109,7 +107,7 @@ public class Nota {
         return String.format("Nota %d : %s selesai.", this.id, done);
     }
 
-    public boolean getServiceStatus() {
+    public boolean updateStatus() {
         for (LaundryService service: services){
             if (!service.isDone()){
                 return false;
