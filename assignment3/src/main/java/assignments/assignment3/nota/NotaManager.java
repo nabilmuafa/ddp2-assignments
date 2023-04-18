@@ -21,6 +21,11 @@ public class NotaManager {
      * @param nota Nota object untuk ditambahkan.
      */
     public static void addNota(Nota nota){
-        //TODO: implement add nota
+        Nota[] newNotaList = new Nota[notaList.length+1];
+        for (int i=0; i<notaList.length; i++){
+            newNotaList[i] = notaList[i];
+        }
+        notaList = newNotaList;
+        notaList[notaList.length-1] = nota;
     }
 }
