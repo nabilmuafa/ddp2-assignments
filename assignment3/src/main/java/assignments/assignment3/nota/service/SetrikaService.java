@@ -16,7 +16,7 @@ public class SetrikaService implements LaundryService{
 
     @Override
     public long getHarga(int berat) {
-        return 500*berat;
+        return 1000*berat;
     }
 
     @Override
