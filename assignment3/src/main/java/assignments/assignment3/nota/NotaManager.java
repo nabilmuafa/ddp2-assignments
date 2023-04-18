@@ -12,7 +12,9 @@ public class NotaManager {
      * Skips ke hari berikutnya dan update semua entri nota yang sesuai.
      */
     public static void toNextDay(){
-        //TODO: implement skip hari
+        for (Nota nota : notaList){
+            nota.toNextDay();
+        }
     }
 
     /**
