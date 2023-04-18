@@ -59,6 +59,9 @@ public class Nota {
     }
 
     public void addService(LaundryService service){
+        if (services == null){
+            services = new LaundryService[0];
+        }
         LaundryService[] newServices = new LaundryService[services.length+1];
         for (int i=0; i<services.length; i++){
             newServices[i] = services[i];
