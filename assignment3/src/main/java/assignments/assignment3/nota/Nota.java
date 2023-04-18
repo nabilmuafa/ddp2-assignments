@@ -97,6 +97,7 @@ public class Nota {
         if (this.sisaHariPengerjaan < 0){
             harga += 2000*this.sisaHariPengerjaan;
         }
+        if (harga < 0) harga = 0;
         return harga;
     }
 
