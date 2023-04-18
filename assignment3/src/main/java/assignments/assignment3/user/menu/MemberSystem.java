@@ -56,6 +56,7 @@ public class MemberSystem extends SystemCLI {
         String paket = in.nextLine();
         System.out.println("Masukkan berat cucian anda:");
         int berat = in.nextInt();
+        in.nextLine();
         if (berat < 2){
             System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
             berat = 2;
