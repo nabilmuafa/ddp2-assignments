@@ -73,15 +73,13 @@ public class Nota {
     public String kerjakan(){
         if (!this.isDone){
             String message = "";
-            boolean allDone = true;
             for (LaundryService service: services) {
                 if (!service.isDone()){
-                    allDone = false;
                     message = service.doWork();
                     break;
                 }
             }
-            if (!allDone){
+            if (!this.getServiceStatus()){
                 return String.format("Nota %d : %s", this.id, message);
             }
             this.isDone = true;
@@ -111,6 +109,14 @@ public class Nota {
         return String.format("Nota %d : %s selesai.", this.id, done);
     }
 
+    public boolean getServiceStatus() {
+        for (LaundryService service: services){
+            if (!service.isDone()){
+                return false;
+            }
+        }
+        return true;
+    }
     @Override
     public String toString(){
         String nota = String.format("[ID Nota = %d]\n", this.id);
