@@ -120,6 +120,8 @@ public class Nota {
         String nota = String.format("[ID Nota = %d]\n", this.id);
         nota += NotaGenerator.generateNota(
             this.member.getId(), this.paket, this.berat, this.tanggalMasuk);
+        nota = nota.replaceAll("Tanggal Terima", "tanggal terima");
+        nota = nota.replaceAll("Tanggal Selesai", "tanggal selesai");
         nota += "\n--- SERVICE LIST ---\n";
         for (LaundryService service: services){
             nota += String.format("-%s @ Rp.%d\n", service.getServiceName(), service.getHarga(this.berat));
