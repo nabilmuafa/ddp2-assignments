@@ -124,9 +124,9 @@ public class Nota {
             this.member.getId(), this.paket, this.berat, this.tanggalMasuk);
         nota += "\n--- SERVICE LIST ---\n";
         for (LaundryService service: services){
-            nota += String.format("-%s @ Rp.%l\n", service.getServiceName(), service.getHarga(this.berat));
+            nota += String.format("-%s @ Rp.%d\n", service.getServiceName(), service.getHarga(this.berat));
         }
-        nota += String.format("Harga Akhir: %l", this.calculateHarga());
+        nota += String.format("Harga Akhir: %d", this.calculateHarga());
         if (this.isLate()){
             nota += String.format(" Ada kompensasi keterlambatan %d * 2000 hari", -1*this.sisaHariPengerjaan);
         }
