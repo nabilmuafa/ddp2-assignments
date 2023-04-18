@@ -1,6 +1,7 @@
 package assignments.assignment3.user.menu;
 import assignments.assignment1.NotaGenerator;
 import assignments.assignment3.nota.Nota;
+import assignments.assignment3.nota.NotaManager;
 import assignments.assignment3.user.Member;
 
 import static assignments.assignment3.nota.NotaManager.cal;
@@ -70,6 +71,7 @@ public class MemberSystem extends SystemCLI {
         String antar = in.nextLine();
         nota.createService(!setrika.equals("x"), !antar.equals("x"));
         loginMember.addNota(nota);
+        NotaManager.addNota(nota);
         System.out.println("Nota berhasil dibuat!");
     }
 
