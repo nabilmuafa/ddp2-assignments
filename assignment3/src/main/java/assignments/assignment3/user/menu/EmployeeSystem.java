@@ -49,7 +49,7 @@ public class EmployeeSystem extends SystemCLI {
 
     protected void printNota(){
         for (Nota nota : notaList){
-            System.out.println(nota);
+            System.out.println(nota.getNotaStatus());
         }
     }
 
