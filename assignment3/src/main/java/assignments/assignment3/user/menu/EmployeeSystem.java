@@ -56,7 +56,7 @@ public class EmployeeSystem extends SystemCLI {
     protected void work(){
         System.out.println(String.format("Stand back! %s beginning to nyuci!", loginMember.getNama()));
         for (Nota nota : notaList){
-            nota.kerjakan();
+            System.out.println(nota.kerjakan());
         }
     }
 }
