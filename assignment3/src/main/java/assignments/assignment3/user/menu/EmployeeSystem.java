@@ -29,7 +29,11 @@ public class EmployeeSystem extends SystemCLI {
     @Override
     protected boolean processChoice(int choice) {
         boolean logout = false;
-        // TODO:
+        switch (choice){
+            case 1  -> this.work();
+            case 2  -> this.printNota();
+            case 3  -> logout = true;
+        }
         return logout;
     }
 
@@ -41,5 +45,18 @@ public class EmployeeSystem extends SystemCLI {
         System.out.println("1. It's nyuci time");
         System.out.println("2. Display List Nota");
         System.out.println("3. Logout");
+    }
+
+    protected void printNota(){
+        for (Nota nota : notaList){
+            System.out.println(nota);
+        }
+    }
+
+    protected void work(){
+        System.out.println(String.format("Stand back! %s beginning to nyuci!", loginMember.getNama()));
+        for (Nota nota : notaList){
+            nota.kerjakan();
+        }
     }
 }
