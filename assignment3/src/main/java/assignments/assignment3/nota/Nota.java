@@ -1,6 +1,11 @@
 package assignments.assignment3.nota;
+import assignments.assignment3.nota.service.AntarService;
+import assignments.assignment3.nota.service.CuciService;
 import assignments.assignment3.nota.service.LaundryService;
+import assignments.assignment3.nota.service.SetrikaService;
 import assignments.assignment3.user.Member;
+import assignments.assignment1.NotaGenerator;
+
 public class Nota {
     private Member member;
     private String paket;
@@ -14,37 +19,114 @@ public class Nota {
     static public int totalNota;
 
     public Nota(Member member, int berat, String paket, String tanggal) {
-        //TODO
+        // assign current idCounter number to idNota, then increment (for next ID)
+        this.id = totalNota++;
+        // assigning every parameter to its respective instance variables
+        this.member = member;
+        this.paket = paket;
+        this.berat = berat;
+        this.tanggalMasuk = tanggal;
+        // switch case for sisaHariPengerjaan according to paket chosen
+        switch (paket.toLowerCase()){
+            case "reguler":
+                this.sisaHariPengerjaan = 3;
+                this.baseHarga = 7000*berat;
+                break;
+            case "fast":
+                this.sisaHariPengerjaan = 2;
+                this.baseHarga = 10000*berat;
+                break;
+            case "express":
+                this.sisaHariPengerjaan = 1;
+                this.baseHarga = 12000*berat;
+        }
+        // Inital value of isDone is always false
+        this.isDone = false;
+    }
+
+    public void createService(boolean wantSetrika, boolean wantAntar){
+        CuciService cuci = new CuciService();
+        this.addService(cuci);
+        if (wantSetrika) {
+            SetrikaService setrika = new SetrikaService();
+            this.addService(setrika);
+        }
+        if (wantAntar) {
+            AntarService antar = new AntarService();
+            this.addService(antar);
+        }
+        
     }
 
     public void addService(LaundryService service){
-        //TODO
+        LaundryService[] newServices = new LaundryService[services.length+1];
+        for (int i=0; i<services.length; i++){
+            newServices[i] = services[i];
+        }
+        services = newServices;
+        services[services.length-1] = service;
     }
 
     public String kerjakan(){
-        // TODO
-        return "";
+        if (!this.isDone){
+            String message = "";
+            boolean allDone = true;
+            for (LaundryService service: services) {
+                if (!service.isDone()){
+                    allDone = false;
+                    message = service.doWork();
+                    break;
+                }
+            }
+            if (!allDone){
+                return String.format("Nota %d : %s", this.id, message);
+            }
+            this.isDone = true;
+        }
+        return this.getNotaStatus();
     }
+
     public void toNextDay() {
-        // TODO
+        if (!this.isDone){
+            this.sisaHariPengerjaan--;
+        }
     }
 
     public long calculateHarga(){
-        // TODO
-        return -1;
+        long harga = baseHarga;
+        for (LaundryService service: services){
+            harga += service.getHarga(berat);
+        }
+        if (this.sisaHariPengerjaan < 0){
+            harga += 2000*this.sisaHariPengerjaan;
+        }
+        return harga;
     }
 
     public String getNotaStatus(){
-        // TODO
-        return "";
+        String done = this.isDone ? "Sudah" : "Belum";
+        return String.format("Nota %d : %s selesai.", this.id, done);
     }
 
     @Override
     public String toString(){
-        // TODO
-        return "";
+        String nota = String.format("[ID Nota = %d]\n", this.id);
+        nota += NotaGenerator.generateNota(
+            this.member.getId(), this.paket, this.berat, this.tanggalMasuk);
+        nota += "\n--- SERVICE LIST ---\n";
+        for (LaundryService service: services){
+            nota += String.format("-%s @ Rp.%l\n", service.getServiceName(), service.getHarga(this.berat));
+        }
+        nota += String.format("Harga Akhir: %l", this.calculateHarga());
+        if (this.isLate()){
+            nota += String.format(" Ada kompensasi keterlambatan %d * 2000 hari", -1*this.sisaHariPengerjaan);
+        }
+        return nota;
     }
 
+    public boolean isLate(){
+        return this.sisaHariPengerjaan < 0;
+    }
     // Dibawah ini adalah getter
 
     public String getPaket() {
