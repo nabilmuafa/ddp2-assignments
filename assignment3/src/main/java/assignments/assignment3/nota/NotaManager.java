@@ -12,7 +12,9 @@ public class NotaManager {
      * Skips ke hari berikutnya dan update semua entri nota yang sesuai.
      */
     public static void toNextDay(){
+        // Adds calendar instance by one day
         cal.add(Calendar.DATE, 1);
+        // Calls toNextDay for every nota registered
         for (Nota nota : notaList){
             nota.toNextDay();
         }
@@ -24,11 +26,13 @@ public class NotaManager {
      * @param nota Nota object untuk ditambahkan.
      */
     public static void addNota(Nota nota){
+        // Extends notaList
         Nota[] newNotaList = new Nota[notaList.length+1];
         for (int i=0; i<notaList.length; i++){
             newNotaList[i] = notaList[i];
         }
         notaList = newNotaList;
+        // Assigns the new nota to the last index
         notaList[notaList.length-1] = nota;
     }
 }
