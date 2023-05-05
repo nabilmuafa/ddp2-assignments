@@ -30,11 +30,13 @@ public class Member {
      * @param nota Nota object untuk ditambahkan.
      */
     public void addNota(Nota nota) {
+        // Extends notaList
         Nota[] newNotaList = new Nota[notaList.length+1];
         for (int i=0; i<notaList.length; i++){
             newNotaList[i] = notaList[i];
         }
         notaList = newNotaList;
+        // Assigns the new nota to last index
         notaList[notaList.length-1] = nota;
     }
 
