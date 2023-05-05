@@ -40,8 +40,11 @@ public class LoginManager {
      * @return Member object yang berhasil mendaftar, return null jika gagal mendaftar.
      */
     public Member register(String nama, String noHp, String password) {
+        // Creates member id by calling generateId from NotaGenerator (TP 1)
         String id = NotaGenerator.generateId(nama, noHp);
+        // Creates new Member object
         Member member = new Member(nama, id, password);
+        // Adds member to memberSystem's memberList if member with the same ID doesn't exist
         if (getSystem(member.getId()) == null){
             memberSystem.addMember(member);
             return member;
