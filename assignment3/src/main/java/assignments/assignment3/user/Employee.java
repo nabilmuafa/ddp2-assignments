@@ -14,6 +14,8 @@ public class Employee extends Member {
      * @param nama -> Nama lengkap dari employee
      */
     private static String generateId(String nama) {
+        // Splits employee name to take only first name,
+        // Sets it to uppercase, adds dash and employee number.
         return nama.split(" ")[0].toUpperCase() + "-" + employeeCount++;
     }
 }
