@@ -29,6 +29,7 @@ public class EmployeeSystem extends SystemCLI {
     @Override
     protected boolean processChoice(int choice) {
         boolean logout = false;
+        // Switch case to call helper methods according to user input
         switch (choice){
             case 1  -> this.work();
             case 2  -> this.printNota();
@@ -47,15 +48,24 @@ public class EmployeeSystem extends SystemCLI {
         System.out.println("3. Logout");
     }
 
+    // Helper Methods
+
+    /**
+     * Method that prints all nota status for employees
+     */
     protected void printNota(){
         for (Nota nota : notaList){
             System.out.println(nota.getNotaStatus());
         }
     }
 
+    /**
+     * Method that works on all nota on notaList
+     */
     protected void work(){
         System.out.println(String.format("Stand back! %s beginning to nyuci!", loginMember.getNama()));
         for (Nota nota : notaList){
+            // Calls kerjakan() on every nota
             System.out.println(nota.kerjakan());
         }
     }
