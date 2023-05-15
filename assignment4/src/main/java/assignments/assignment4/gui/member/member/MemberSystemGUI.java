@@ -34,8 +34,10 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * */
     @Override
     protected JButton[] createButtons() {
-        // TODO
+        JButton laundryButton = new JButton("Saya ingin laundry");
+        JButton lihatNota = new JButton("Lihat detail nota saya");
         return new JButton[]{
+            laundryButton, lihatNota
         };
     }
 
