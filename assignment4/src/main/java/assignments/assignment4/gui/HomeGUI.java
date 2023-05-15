@@ -12,6 +12,7 @@ import static assignments.assignment3.nota.NotaManager.toNextDay;
 
 public class HomeGUI extends JPanel {
     public static final String KEY = "HOME";
+    private GridBagConstraints c = new GridBagConstraints();
     private JLabel titleLabel;
     private JLabel dateLabel;
     private JPanel mainPanel;
@@ -37,20 +38,51 @@ public class HomeGUI extends JPanel {
      * Be creative and have fun!
      * */
     private void initGUI() {
+        titleLabel = new JLabel("Selamat datang di Cuci-Cuci System!");
+        dateLabel = new JLabel("Sekarang tanggal gatau");
+        loginButton = new JButton("Login");
+        registerButton = new JButton("Register");
+        toNextDayButton = new JButton("Next Day");
+
+        c.gridy = 0;
+        c.gridx = 0;
+        c.weighty = 0.5;
+        mainPanel.add(titleLabel, c);
+
+        c.gridy = 1;
+        mainPanel.add(loginButton, c);
+
+        c.gridy = 2;
+        mainPanel.add(registerButton, c);
+
+        c.gridy = 3;
+        mainPanel.add(toNextDayButton, c);
+
+        c.gridy = 4;
+        mainPanel.add(dateLabel, c);
+
+        registerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleToRegister();
+            }
+        });
     }
 
     /**
      * Method untuk pergi ke halaman register.
      * Akan dipanggil jika pengguna menekan "registerButton"
      * */
-    private static void handleToRegister() {
+    private void handleToRegister() {
+        MainFrame frame = MainFrame.getInstance();
+        frame.navigateTo(RegisterGUI.KEY);
     }
 
     /**
      * Method untuk pergi ke halaman login.
      * Akan dipanggil jika pengguna menekan "loginButton"
      * */
-    private static void handleToLogin() {
+    private void handleToLogin() {
     }
 
     /**
