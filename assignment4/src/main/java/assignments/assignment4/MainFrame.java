@@ -48,6 +48,7 @@ public class MainFrame extends JFrame{
         initGUI();
         cards.show(mainPanel, HomeGUI.KEY);
         add(mainPanel);
+        setLocationRelativeTo(null);
     }
 
     /**
