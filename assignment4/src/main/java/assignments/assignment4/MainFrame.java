@@ -83,7 +83,7 @@ public class MainFrame extends JFrame{
      * @param page -> key dari halaman yang diinginkan.
      * */
     public void navigateTo(String page){
-        // TODO
+        cards.show(mainPanel, page);
     }
 
     /**
@@ -99,7 +99,7 @@ public class MainFrame extends JFrame{
     public boolean login(String id, String password){
         for (Loginable panel:
                 loginablePanel) {
-            // TODO
+            
         }
         return false;
     }
