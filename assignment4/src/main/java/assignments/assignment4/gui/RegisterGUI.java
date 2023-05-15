@@ -1,5 +1,6 @@
 package assignments.assignment4.gui;
 
+import static assignments.assignment1.NotaGenerator.isNumeric;
 import assignments.assignment3.LoginManager;
 import assignments.assignment3.user.Member;
 import assignments.assignment4.MainFrame;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 
 public class RegisterGUI extends JPanel {
     public static final String KEY = "REGISTER";
+    private MainFrame frame = MainFrame.getInstance();
     private GridBagConstraints c;
     private JPanel mainPanel;
     private JLabel nameLabel;
@@ -99,7 +101,6 @@ public class RegisterGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
-        MainFrame frame = MainFrame.getInstance();
         frame.navigateTo(HomeGUI.KEY);
     }
 
@@ -111,9 +112,19 @@ public class RegisterGUI extends JPanel {
         String nama = nameTextField.getText();
         String noHp = phoneTextField.getText();
         String password = String.valueOf(passwordField.getPassword());
-        Member member = loginManager.register(nama, noHp, password);
-        if (member != null){
-            JOptionPane.showMessageDialog(mainPanel, String.format("User dengan ID %s sudah ada!", member.getId()), "Registration Failed", JOptionPane.ERROR_MESSAGE);
+        if (nama.equals("") || noHp.equals("") || password.equals("")) {
+            JOptionPane.showMessageDialog(this, "Semua field diatas harus diisi!", "Empty Field", JOptionPane.ERROR_MESSAGE);
         }
+        if (!isNumeric(noHp)) {
+            JOptionPane.showMessageDialog(this, "Nomor handphone harus berisi angka!", "Invalid Phone Number", JOptionPane.ERROR_MESSAGE);
+        }
+        Member member = loginManager.register(nama, noHp, password);
+        if (member == null){
+            JOptionPane.showMessageDialog(this, String.format("User dengan nama %s dan nomor hp %s sudah ada!", nama, noHp), "Registration Failed", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(this, String.format("Berhasil membuat user dengan ID %s", member.getId()));
+        }
+        frame.navigateTo(HomeGUI.KEY);
     }
 }
