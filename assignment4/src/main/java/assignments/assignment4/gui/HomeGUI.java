@@ -42,7 +42,7 @@ public class HomeGUI extends JPanel {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         add(titleLabel, BorderLayout.NORTH);
 
-        dateLabel = new JLabel("Sekarang tanggal ???", SwingConstants.CENTER);
+        dateLabel = new JLabel(String.format("Hari ini: %s", NotaManager.fmt.format(NotaManager.cal.getTime())), SwingConstants.CENTER);
         add(dateLabel, BorderLayout.SOUTH);
 
         c.gridx = 0;
@@ -70,8 +70,15 @@ public class HomeGUI extends JPanel {
 
         loginButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 handleToLogin();
+            }
+        });
+
+        toNextDayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleNextDay();
             }
         });
     }
@@ -99,5 +106,8 @@ public class HomeGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "toNextDayButton"
      * */
     private void handleNextDay() {
+        toNextDay();
+        dateLabel.setText(String.format("Hari ini: %s", NotaManager.fmt.format(NotaManager.cal.getTime())));
+        JOptionPane.showMessageDialog(this, "Kamu tidur hari ini... zzz...", "Hari Baru, Semangat Baru", JOptionPane.INFORMATION_MESSAGE);
     }
 }
