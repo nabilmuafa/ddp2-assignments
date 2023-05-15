@@ -106,6 +106,9 @@ public class LoginGUI extends JPanel {
         MainFrame frame = MainFrame.getInstance();
         String id = idTextField.getText();
         String password = String.valueOf(passwordField.getPassword());
-        frame.login(id, password);
+        boolean success = frame.login(id, password);
+        if (!success) {
+            JOptionPane.showMessageDialog(this, "ID atau password invalid.", "Invalid ID or password", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
