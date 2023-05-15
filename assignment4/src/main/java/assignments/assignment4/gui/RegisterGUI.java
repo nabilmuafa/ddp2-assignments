@@ -122,9 +122,12 @@ public class RegisterGUI extends JPanel {
         String password = String.valueOf(passwordField.getPassword());
         if (nama.equals("") || noHp.equals("") || password.equals("")) {
             JOptionPane.showMessageDialog(this, "Semua field diatas harus diisi!", "Empty Field", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         if (!isNumeric(noHp)) {
             JOptionPane.showMessageDialog(this, "Nomor handphone harus berisi angka!", "Invalid Phone Number", JOptionPane.ERROR_MESSAGE);
+            phoneTextField.setText("");
+            return;
         }
         Member member = loginManager.register(nama, noHp, password);
         if (member == null){
