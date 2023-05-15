@@ -67,6 +67,13 @@ public class HomeGUI extends JPanel {
                 handleToRegister();
             }
         });
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                handleToLogin();
+            }
+        });
     }
 
     /**
@@ -83,6 +90,8 @@ public class HomeGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "loginButton"
      * */
     private void handleToLogin() {
+        MainFrame frame = MainFrame.getInstance();
+        frame.navigateTo(LoginGUI.KEY);
     }
 
     /**
