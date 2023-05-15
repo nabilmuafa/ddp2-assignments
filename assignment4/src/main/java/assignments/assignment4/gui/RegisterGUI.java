@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 
 public class RegisterGUI extends JPanel {
     public static final String KEY = "REGISTER";
-    private MainFrame frame = MainFrame.getInstance();
     private GridBagConstraints c;
     private JPanel mainPanel;
     private JLabel nameLabel;
@@ -101,6 +100,7 @@ public class RegisterGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
+        MainFrame frame = MainFrame.getInstance();
         frame.navigateTo(HomeGUI.KEY);
     }
 
@@ -109,6 +109,7 @@ public class RegisterGUI extends JPanel {
     * Akan dipanggil jika pengguna menekan "registerButton"
     * */
     private void handleRegister() {
+        MainFrame frame = MainFrame.getInstance();
         String nama = nameTextField.getText();
         String noHp = phoneTextField.getText();
         String password = String.valueOf(passwordField.getPassword());
