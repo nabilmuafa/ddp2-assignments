@@ -48,9 +48,13 @@ public class RegisterGUI extends JPanel {
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 9;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.WEST;
+        c.weightx = 9;
+        c.weighty = 0.25;
         mainPanel.add(nameLabel, c);
 
-        nameTextField = new JTextField();
+        nameTextField = new JTextField(20);
         c.gridy = 1;
         mainPanel.add(nameTextField, c);
 
@@ -74,6 +78,9 @@ public class RegisterGUI extends JPanel {
         c.gridy = 6;
         c.gridx = 4;
         c.gridwidth = 1;
+        c.fill = 0;
+        c.weightx = 1;
+        c.anchor = GridBagConstraints.CENTER;
         mainPanel.add(registerButton, c);
 
         backButton = new JButton("Kembali");
