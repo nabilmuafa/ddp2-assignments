@@ -94,6 +94,7 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
+        resetFields();
         MainFrame frame = MainFrame.getInstance();
         frame.navigateTo(HomeGUI.KEY);
     }
@@ -110,5 +111,11 @@ public class LoginGUI extends JPanel {
         if (!success) {
             JOptionPane.showMessageDialog(this, "ID atau password invalid.", "Invalid ID or password", JOptionPane.ERROR_MESSAGE);
         }
+        resetFields();
+    }
+
+    private void resetFields() {
+        idTextField.setText("");
+        passwordField.setText("");
     }
 }
