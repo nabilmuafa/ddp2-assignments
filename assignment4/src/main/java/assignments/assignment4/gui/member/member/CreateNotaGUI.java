@@ -157,6 +157,10 @@ public class CreateNotaGUI extends JPanel {
             return;
         }
         int berat = Integer.parseInt(beratString);
+        if (berat < 2) {
+            JOptionPane.showMessageDialog(this, "Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
+            berat = 2;
+        }
         String paket = paketComboBox.getSelectedItem().toString();
         Nota nota = new Nota(member, berat, paket, fmt.format(cal.getTime()));
         nota.createService(setrikaCheckBox.isSelected(), antarCheckBox.isSelected());
