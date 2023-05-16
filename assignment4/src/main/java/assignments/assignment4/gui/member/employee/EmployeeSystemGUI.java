@@ -73,6 +73,16 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
     private void cuci() {
-        // TODO
+        JOptionPane.showMessageDialog(this, String.format("Stand back! %s beginning to nyuci!", loggedInMember.getNama()), "Nyuci Time", JOptionPane.INFORMATION_MESSAGE);
+        if (NotaManager.notaList.length == 0) {
+            JOptionPane.showMessageDialog(this, "Belum ada cucian yang bisa dikerjakan!", "Nyuci Results", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String results = "";
+        for (Nota nota : NotaManager.notaList){
+            results += nota.kerjakan() + "\n";
+        }
+        JLabel resultLabel = new JLabel(results);
+        JOptionPane.showMessageDialog(this, resultLabel, "Nyuci Results", JOptionPane.INFORMATION_MESSAGE);
     }
 }
