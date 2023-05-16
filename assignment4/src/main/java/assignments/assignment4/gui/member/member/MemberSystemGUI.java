@@ -73,8 +73,9 @@ public class MemberSystemGUI extends AbstractMemberGUI {
         JTextArea detailNota = new JTextArea(kumpulanNota);
         detailNota.setLineWrap(true);
         detailNota.setWrapStyleWord(true);
+        detailNota.setEditable(false);
         JScrollPane display = new JScrollPane(detailNota);
-        display.setPreferredSize(new Dimension(300, 300));
+        display.setPreferredSize(new Dimension(400, 300));
         JOptionPane.showMessageDialog(this, display, "Detail Nota", JOptionPane.INFORMATION_MESSAGE);
     }
 
