@@ -67,12 +67,14 @@ public class MemberSystemGUI extends AbstractMemberGUI {
         }
         else{
             for (Nota nota : loggedInMember.getNotaList()) {
-                kumpulanNota += nota + "\n";
+                kumpulanNota += nota + "\n\n\n";
             }
         }
         JTextArea detailNota = new JTextArea(kumpulanNota);
+        detailNota.setLineWrap(true);
+        detailNota.setWrapStyleWord(true);
         JScrollPane display = new JScrollPane(detailNota);
-        display.setPreferredSize(new Dimension(300, 400));
+        display.setPreferredSize(new Dimension(300, 300));
         JOptionPane.showMessageDialog(this, display, "Detail Nota", JOptionPane.INFORMATION_MESSAGE);
     }
 
