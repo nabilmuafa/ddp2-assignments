@@ -1,9 +1,8 @@
 package assignments.assignment4.gui.member.member;
 
+import static assignments.assignment1.NotaGenerator.isPosNumeric;
 import assignments.assignment3.nota.Nota;
 import assignments.assignment3.nota.NotaManager;
-import assignments.assignment3.nota.service.AntarService;
-import assignments.assignment3.nota.service.SetrikaService;
 import assignments.assignment3.user.Member;
 import assignments.assignment4.MainFrame;
 
@@ -82,7 +81,6 @@ public class CreateNotaGUI extends JPanel {
         c.weightx = 1;
         mainPanel.add(paketComboBox, c);
 
-        c.gridx = 0;
         c.gridx = 5;
         mainPanel.add(showPaketButton, c);
 
@@ -102,13 +100,28 @@ public class CreateNotaGUI extends JPanel {
         
         add(mainPanel, BorderLayout.CENTER);
 
-        showPaketButton.addActionListener(e -> {
-            showPaket();
+        showPaketButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showPaket();
+            }
         });
 
-        backButton.addActionListener(e -> {
-            handleBack();
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleBack();
+            }
         });
+
+
+        createNotaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                createNota();
+            }
+        });
+
     }
 
     /**
@@ -136,7 +149,21 @@ public class CreateNotaGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "createNotaButton"
      * */
     private void createNota() {
-        // TODO
+        Member member = memberSystemGUI.getLoggedInMember();
+        String beratString = beratTextField.getText();
+        if (!isPosNumeric(beratString)) {
+            JOptionPane.showMessageDialog(this, "Berat cucian harus berisi angka!", "Berat Invalid", JOptionPane.ERROR_MESSAGE);
+            beratTextField.setText("");
+            return;
+        }
+        int berat = Integer.parseInt(beratString);
+        String paket = paketComboBox.getSelectedItem().toString();
+        Nota nota = new Nota(member, berat, paket, fmt.format(cal.getTime()));
+        nota.createService(setrikaCheckBox.isSelected(), antarCheckBox.isSelected());
+        member.addNota(nota);
+        NotaManager.addNota(nota);
+        JOptionPane.showMessageDialog(this, "Nota berhasil dibuat!", "Success", JOptionPane.INFORMATION_MESSAGE);
+        resetFields();
     }
 
     /**
