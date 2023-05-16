@@ -107,6 +107,7 @@ public class RegisterGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
+        resetFields();
         MainFrame frame = MainFrame.getInstance();
         frame.navigateTo(HomeGUI.KEY);
     }
@@ -136,9 +137,13 @@ public class RegisterGUI extends JPanel {
         else {
             JOptionPane.showMessageDialog(this, String.format("Berhasil membuat user dengan ID %s", member.getId()));
         }
+        resetFields();
+        frame.navigateTo(HomeGUI.KEY);
+    }
+
+    private void resetFields() {
         nameTextField.setText("");
         phoneTextField.setText("");
         passwordField.setText("");
-        frame.navigateTo(HomeGUI.KEY);
     }
 }
