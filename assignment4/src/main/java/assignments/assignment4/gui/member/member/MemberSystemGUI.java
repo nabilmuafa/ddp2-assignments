@@ -60,7 +60,20 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void showDetailNota() {
-        // TODO
+
+        String kumpulanNota = "";
+        if (loggedInMember.getNotaList().length == 0) {
+            kumpulanNota = "Kamu belum pernah laundry di CuciCuci. Buat nota cucian pertamamu sekarang!";
+        }
+        else{
+            for (Nota nota : loggedInMember.getNotaList()) {
+                kumpulanNota += nota + "\n";
+            }
+        }
+        JTextArea detailNota = new JTextArea(kumpulanNota);
+        JScrollPane display = new JScrollPane(detailNota);
+        display.setPreferredSize(new Dimension(300, 400));
+        JOptionPane.showMessageDialog(this, display, "Detail Nota", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
