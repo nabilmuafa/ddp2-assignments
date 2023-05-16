@@ -68,7 +68,8 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
     private void createNota() {
-        // TODO
+        MainFrame frame = MainFrame.getInstance();
+        frame.navigateTo(CreateNotaGUI.KEY);
     }
 
 }
