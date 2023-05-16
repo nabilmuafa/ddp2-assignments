@@ -158,7 +158,7 @@ public class CreateNotaGUI extends JPanel {
         }
         int berat = Integer.parseInt(beratString);
         if (berat < 2) {
-            JOptionPane.showMessageDialog(this, "Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
+            JOptionPane.showMessageDialog(this, "Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg", "info", JOptionPane.INFORMATION_MESSAGE);
             berat = 2;
         }
         String paket = paketComboBox.getSelectedItem().toString();
