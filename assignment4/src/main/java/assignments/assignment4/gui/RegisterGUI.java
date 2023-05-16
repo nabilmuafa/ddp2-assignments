@@ -135,7 +135,9 @@ public class RegisterGUI extends JPanel {
             JOptionPane.showMessageDialog(this, String.format("User dengan nama %s dan nomor hp %s sudah ada!", nama, noHp), "Registration Failed", JOptionPane.ERROR_MESSAGE);
         }
         else {
-            JOptionPane.showMessageDialog(this, String.format("Berhasil membuat user dengan ID %s", member.getId()));
+            JTextField message = new JTextField(String.format("Berhasil membuat user dengan ID %s", member.getId()));
+            message.setEditable(false);
+            JOptionPane.showMessageDialog(this, message, "Registration Successful", JOptionPane.INFORMATION_MESSAGE);
         }
         resetFields();
         frame.navigateTo(HomeGUI.KEY);
