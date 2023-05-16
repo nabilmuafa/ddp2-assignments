@@ -101,6 +101,14 @@ public class CreateNotaGUI extends JPanel {
         mainPanel.add(backButton, c);
         
         add(mainPanel, BorderLayout.CENTER);
+
+        showPaketButton.addActionListener(e -> {
+            showPaket();
+        });
+
+        backButton.addActionListener(e -> {
+            handleBack();
+        });
     }
 
     /**
@@ -136,6 +144,15 @@ public class CreateNotaGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
-        // TODO
+        resetFields();
+        MainFrame frame = MainFrame.getInstance();
+        frame.navigateTo(MemberSystemGUI.KEY);
+    }
+
+    private void resetFields() {
+        setrikaCheckBox.setSelected(false);
+        antarCheckBox.setSelected(false);
+        beratTextField.setText("");
+        paketComboBox.setSelectedIndex(0);
     }
 }
