@@ -56,14 +56,15 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void displayNota() {
-        String notaStatus = "";
         if (NotaManager.notaList.length == 0){
             JOptionPane.showMessageDialog(this, "Belum ada nota", "List Nota", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        String notaStatus = "<html>";
         for (Nota nota : NotaManager.notaList) {
-            notaStatus += nota.getNotaStatus() + "\n";
+            notaStatus += nota.getNotaStatus() + "<br/>";
         }
+        notaStatus += "</html>";
         JLabel statusList = new JLabel(notaStatus);
         JOptionPane.showMessageDialog(this, statusList, "Detail Nota", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -78,10 +79,11 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
             JOptionPane.showMessageDialog(this, "Belum ada cucian yang bisa dikerjakan!", "Nyuci Results", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        String results = "";
+        String results = "<html>";
         for (Nota nota : NotaManager.notaList){
-            results += nota.kerjakan() + "\n";
+            results += nota.kerjakan() + "<br/>";
         }
+        results += "</html>";
         JLabel resultLabel = new JLabel(results);
         JOptionPane.showMessageDialog(this, resultLabel, "Nyuci Results", JOptionPane.INFORMATION_MESSAGE);
     }
