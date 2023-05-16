@@ -30,6 +30,7 @@ public class CreateNotaGUI extends JPanel {
     private final MemberSystemGUI memberSystemGUI;
 
     public CreateNotaGUI(MemberSystemGUI memberSystemGUI) {
+        super(new BorderLayout());
         this.memberSystemGUI = memberSystemGUI;
         this.fmt = NotaManager.fmt;
         this.cal = NotaManager.cal;
@@ -44,7 +45,62 @@ public class CreateNotaGUI extends JPanel {
      * Be creative and have fun!
      * */
     private void initGUI() {
-        // TODO
+        JPanel mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+
+        GridBagConstraints c = new GridBagConstraints();
+
+        paketLabel = new JLabel("Paket Laundry: ");
+        beratLabel = new JLabel("Berat Cucian (kg):");
+        paketComboBox = new JComboBox<String>(new String[]{"Express", "Fast", "Reguler"});
+        beratTextField = new JTextField();
+        showPaketButton = new JButton("Show Paket");
+        setrikaCheckBox = new JCheckBox("Tambah Setrika Service (1000 / kg)");
+        antarCheckBox = new JCheckBox("Tambah Antar Service (2000 / 4kg pertama, kemudian 500 / kg)");
+        createNotaButton = new JButton("Buat Nota");
+        backButton = new JButton("Kembali");
+
+        c.gridx = 0;
+        c.gridy = 0;
+        c.fill = 4;
+        c.anchor = GridBagConstraints.WEST;
+        c.insets = new Insets(5, 5, 5, 5);
+        mainPanel.add(paketLabel, c);
+
+        c.gridy = 1;
+        mainPanel.add(beratLabel,c);
+
+        c.gridy = 2;
+        mainPanel.add(setrikaCheckBox, c);
+
+        c.gridy = 3;
+        mainPanel.add(antarCheckBox, c);
+
+        c.gridy = 0;
+        c.gridx = 4;
+        c.fill = 1;
+        c.weightx = 1;
+        mainPanel.add(paketComboBox, c);
+
+        c.gridx = 0;
+        c.gridx = 5;
+        mainPanel.add(showPaketButton, c);
+
+        c.gridx = 4;
+        c.gridy = 1;
+        mainPanel.add(beratTextField, c);
+
+        c.gridx = 0;
+        c.gridy = 4;
+        c.gridwidth = 6;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.CENTER;
+        mainPanel.add(createNotaButton, c);
+
+        c.gridy = 5;
+        mainPanel.add(backButton, c);
+        
+        add(mainPanel, BorderLayout.CENTER);
     }
 
     /**
