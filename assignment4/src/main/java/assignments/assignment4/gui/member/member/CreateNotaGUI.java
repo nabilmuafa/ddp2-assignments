@@ -151,7 +151,7 @@ public class CreateNotaGUI extends JPanel {
     private void createNota() {
         Member member = memberSystemGUI.getLoggedInMember();
         String beratString = beratTextField.getText();
-        if (!isPosNumeric(beratString)) {
+        if (!isPosNumeric(beratString) || beratString.equals("")) {
             JOptionPane.showMessageDialog(this, "Berat cucian harus berisi angka!", "Berat Invalid", JOptionPane.ERROR_MESSAGE);
             beratTextField.setText("");
             return;
