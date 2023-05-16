@@ -56,7 +56,16 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void displayNota() {
-        // TODO
+        String notaStatus = "";
+        if (NotaManager.notaList.length == 0){
+            JOptionPane.showMessageDialog(this, "Belum ada nota", "List Nota", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        for (Nota nota : NotaManager.notaList) {
+            notaStatus += nota.getNotaStatus() + "\n";
+        }
+        JLabel statusList = new JLabel(notaStatus);
+        JOptionPane.showMessageDialog(this, statusList, "Detail Nota", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
