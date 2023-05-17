@@ -25,7 +25,7 @@ public class MainFrame extends JFrame{
     private final LoginManager loginManager = new LoginManager(employeeSystem, memberSystem);
     private final HomeGUI homeGUI = new HomeGUI();
     private final RegisterGUI registerGUI = new RegisterGUI(loginManager);
-    private final LoginGUI loginGUI = new LoginGUI(loginManager);
+    private final LoginGUI loginGUI = new LoginGUI();
     private final EmployeeSystemGUI employeeSystemGUI = new EmployeeSystemGUI(employeeSystem);
     private final MemberSystemGUI memberSystemGUI = new MemberSystemGUI(memberSystem);
     private final CreateNotaGUI createNotaGUI = new CreateNotaGUI(memberSystemGUI);
