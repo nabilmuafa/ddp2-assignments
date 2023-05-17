@@ -1,6 +1,5 @@
 package assignments.assignment4.gui;
 
-import assignments.assignment3.LoginManager;
 import assignments.assignment4.MainFrame;
 
 import javax.swing.*;
@@ -18,11 +17,9 @@ public class LoginGUI extends JPanel {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JButton backButton;
-    private LoginManager loginManager;
 
-    public LoginGUI(LoginManager loginManager) {
+    public LoginGUI() {
         super(new BorderLayout()); // Setup layout, Feel free to make any changes
-        this.loginManager = loginManager;
 
         // Set up main panel, Feel free to make any changes
         mainPanel = new JPanel(new GridBagLayout());
