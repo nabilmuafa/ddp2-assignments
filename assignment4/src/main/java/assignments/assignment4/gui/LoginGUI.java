@@ -36,6 +36,7 @@ public class LoginGUI extends JPanel {
      * Be creative and have fun!
      * */
     private void initGUI() {
+        // Label input ID (dan setting constraints GridBagLayout)
         idLabel = new JLabel("Masukkan ID anda: ");
         c.gridx = 0;
         c.gridy = 0;
@@ -46,18 +47,22 @@ public class LoginGUI extends JPanel {
         c.weighty = 0.25;
         mainPanel.add(idLabel, c);
 
+        // Text field input ID
         idTextField = new JTextField(20);
         c.gridy = 1;
         mainPanel.add(idTextField, c);
         
+        // Label input password
         passwordLabel = new JLabel("Masukkan password anda: ");
         c.gridy = 2;
         mainPanel.add(passwordLabel, c);
 
+        // Text field input password
         passwordField = new JPasswordField();
         c.gridy = 3;
         mainPanel.add(passwordField, c);
 
+        // Tombol untuk login
         loginButton = new JButton("Login");
         c.gridy = 4;
         c.gridx = 4;
@@ -67,10 +72,12 @@ public class LoginGUI extends JPanel {
         c.anchor = GridBagConstraints.CENTER;
         mainPanel.add(loginButton, c);
 
+        // Tombol untuk back
         backButton = new JButton("Kembali");
         c.gridy = 5;
         mainPanel.add(backButton, c);
 
+        // ActionListener untuk tombol back, memanggil handleBack
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,6 +85,7 @@ public class LoginGUI extends JPanel {
             }
         });
 
+        // ActionListener untuk tombol login, memanggil handleLogin
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -91,7 +99,9 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "backButton"
      * */
     private void handleBack() {
+        // Mengosongkan semua field
         resetFields();
+        // Mengambil instance MainFrame lalu navigasi ke HomeGUI
         MainFrame frame = MainFrame.getInstance();
         frame.navigateTo(HomeGUI.KEY);
     }
@@ -101,16 +111,24 @@ public class LoginGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "loginButton"
      * */
     private void handleLogin() {
+        // Mengambil instance MainFrame
         MainFrame frame = MainFrame.getInstance();
+        // Mengambil text yang diinput user
         String id = idTextField.getText();
         String password = String.valueOf(passwordField.getPassword());
+        // Melakukan login di MainFrame
         boolean success = frame.login(id, password);
+        // Memunculkan dialog box apabila login gagal
         if (!success) {
             JOptionPane.showMessageDialog(this, "ID atau password invalid.", "Invalid ID or password", JOptionPane.ERROR_MESSAGE);
         }
+        // Mengosongkan kembali fields apabila berhasil
         resetFields();
     }
 
+    /**
+     * Method untuk mengosongkan kembali semua field
+     */
     private void resetFields() {
         idTextField.setText("");
         passwordField.setText("");

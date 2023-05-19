@@ -60,22 +60,28 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button pertama pada createButtons
      * */
     private void showDetailNota() {
-
         String kumpulanNota = "";
+        // Jika nota list milik member masih kosong, isi detail nota adalah pesan ini
         if (loggedInMember.getNotaList().length == 0) {
             kumpulanNota = "Kamu belum pernah laundry di CuciCuci. Buat nota cucian pertamamu sekarang!";
         }
+        // Menambahkan detail setiap nota ke kumpulanNota (iterasi)
         else{
             for (Nota nota : loggedInMember.getNotaList()) {
                 kumpulanNota += nota + "\n\n\n";
             }
         }
+        // Menggunakan JTextArea untuk display detail nota
         JTextArea detailNota = new JTextArea(kumpulanNota);
         detailNota.setLineWrap(true);
         detailNota.setWrapStyleWord(true);
         detailNota.setEditable(false);
+
+        // Membungkus JTextArea dengan JScrollPane
         JScrollPane display = new JScrollPane(detailNota);
         display.setPreferredSize(new Dimension(400, 300));
+
+        // Mendisplay JScrollPane melalui dialog box
         JOptionPane.showMessageDialog(this, display, "Detail Nota", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -84,6 +90,7 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * Akan dipanggil jika pengguna menekan button kedua pada createButtons
      * */
     private void createNota() {
+        // Mengambil instance MainFrame, navigasi ke CreateNotaGUI
         MainFrame frame = MainFrame.getInstance();
         frame.navigateTo(CreateNotaGUI.KEY);
     }

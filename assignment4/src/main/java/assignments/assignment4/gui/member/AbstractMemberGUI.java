@@ -88,7 +88,10 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
      * @return true jika ID dan password sesuai dengan instance member, false jika tidak.
      * */
     public boolean login(String id, String password) {
+        // Autentikasi user dengan systemCLI.authUser()
         Member user = systemCLI.authUser(id, password);
+        // Apabila autentikasi sukses, loggedInMember menjadi objek Member,
+        // label Welcome dan Logged In As diganti, lalu return true
         if (user != null) {
             loggedInMember = user;
             welcomeLabel.setText(String.format("Welcome, %s!", loggedInMember.getNama()));
